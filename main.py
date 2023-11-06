@@ -1,14 +1,16 @@
 import PyPDF2  
 import os      
+from tkinter.filedialog import askdirectory
 
 merger = PyPDF2.PdfMerger()
 
-listaArquivos = os.listdir('automacoes/PDFMerger/arquivos')
+caminho = askdirectory(title = 'Selecione uma pasta')
+listaArquivos = os.listdir(caminho)
 listaArquivos.sort()
 print(listaArquivos)
 
 for arquivo in listaArquivos:  
       if '.pdf' in arquivo:     
-            merger.append(f'automacoes/PDFMerger/arquivos/{arquivo}')   
+            merger.append(f'{caminho}/{arquivo}')   
 
-merger.write('automacoes/PDFMerger/arquivos/PDF Final.pdf') 
+merger.write(f'{caminho}/PDF Final.pdf') 
